@@ -20,8 +20,8 @@ class TextTest extends StatelessWidget{
       children: <Widget>[
         // Text 예제
         Text("Test"),
-        Text("Test2", style: TextStyle(fontSize: 20)),
-        Text("Test2", style: TextStyle(color: Colors.blue)),
+        Text("Test2", style: TextStyle(fontSize: 50)),
+        Text("Test2", style: TextStyle(fontSize: 70,color: Colors.blue)),
       ],
     );
 

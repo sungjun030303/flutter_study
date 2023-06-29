@@ -1,46 +1,57 @@
-1. 프로젝트 생성하면 lib/main.dart에 main 함수가 존재함. runApp() 함수를 실행하여 시작됨.
 
-    - runApp()은 파라메터로 Widget을 받는다.
-    - Widget은 Flutter를 구성하는 모든 것들의 기본단위 클래스
-    - Widget은 Widget을 포함시켜 계층단위(parent, child)를 만든다. => 화면 안의 화면으로 구성
-    - 화면이 계층구조이다보니 Widget들의 오른쪽 들여쓰기가 많은 편임(주의필요).
+### Flutterの基本的なアプリ構造を概観しましょう。
 
-    ```dart
-    
+![](img/start.jpg)
+
+1.プロジェクトを作成すると、lib/main.dartにmain関数が存在します。
+   runApp() 関数を呼び出してアプリが開始されます。
+
+    - runApp()関数は、引数としてWidgetを受け取ります。
+    - WidgetはFlutterのUIを構成する基本単位です。
+    - Widgetは他のWidgetを含んで階層構造（親子関係）を形成します。これは画面内に画面を構成する概念です。
+    - Widgetは階層構造を持つため、右側のインデントが多くなる傾向があります。
+
+~~~dart 
     void main() {
       runApp(MyApp()); 
     }
+~~~
 
-    ```
 
-2. 위에서 MyApp은 Widget에서 하위계층인 StatelessWidget을 상속.
 
-    - StatelessWidget 위젯의 Build 메소드에서 위젯을 생성 및 반환
-    - 간단한 한 개의 위젯에서 복잡한 테마를 포함할 수 있는 
-       Container 위젯까지 다양하게 반환가능
+StatelessWidgetは状態を管理しないWidgetです。自身で状態（データの変更）を変更することはできません。
+StatefulWidgetは状態が変更されると、Widgetの画面を更新するために使用されます。
+
+2. 上記の例では、MyAppはStatelessWidgetを継承(Inheritance)したWidgetです。
+
+    - StatelessWidgetのBuildMETHODでWidgetを生成＆RETURN.
+    - 簡単な一つのWidgetから複雑なテーマを含めた 
+       ContainerWidgetまで色々RETURNができる。
     - 
 
-    ```dart
+    ~~~ dart
     class MyApp extends StatelessWidget {
+    //build method
       // This widget is the root of your application.
       @override
       Widget build(BuildContext context) {
-        return ... // 위젯생성
+        return ... //create widget 
       }
     }
-    ```
-   - **StatelessWidget**은 상태를 관리하지 않는 Widget이다. 자신의 위젯 안에서 상태(데이터 변경)를 변경할 수 없다.
-   - 반대로 **StatefulWidgetd**은 상태가 변하면(데이터 변경) Widget들의 화면을 갱신할 때 사용한다.  
+    ~~~
+   - 
+   - **StatelessWidget**は状態を管理しないWidgetです。自身で状態（データの変更）を変更することはできません。
+   -  逆に**StatefulWidgetd**は状態が変更されると、Widgetの画面を更新するために使用されます。
 
 
-3. build 메소드에서 MaterialApp으로 반환
+3. buildメソッドでMaterialAppを返します。
 
-   - MaterialApp은 Android Theme의 한 종류이다.
-      - title: 앱 타이틀바 영역문구
-      - theme: 머터리얼 테마설정
-      - home : 화면을 그리는 영역(위젯)
+   - MaterialAppはAndroidテーマの一つの種類である。
+      - title: アプリのタイトルバーに表示されるテキスト
+      - theme: アプリのテーマを設定
+      - home : 描画する画面領域（Widget）を指定
 
-    ```dart
+    ~~~ dart
     ...
 
     return MaterialApp(
@@ -55,7 +66,8 @@
 
     );
    
-    ```
+    ~~~
+   
    - Scafold 안에 위젯을 만들어 넘겨주어야 머터리얼 테마로 화면이 구성된다.
    - Scafold 안의 중요한 파라메터들은 다음과 같다.
       - appBar : 타이틀바 관련 위젯
